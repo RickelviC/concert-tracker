@@ -114,7 +114,7 @@ public class ConcertService {
         for (Concert concert : concerts) {
             System.out.println(concert.getConcert_year()
                     + " | " + concert.getArtist().getName()
-                    + " @ " + concert.getVenue().getName()
+                    + " IN " + concert.getVenue().getName()
                     + " | Price: $" + concert.getTicket_price()
                     + " | Tickets sold: " + concert.getTicket_sold());
         }
@@ -131,7 +131,7 @@ public class ConcertService {
             for (Concert concert : concerts) {
                 System.out.println(concert.getConcert_year()
                         + " | " + concert.getArtist().getName()
-                        + " @ " + concert.getVenue().getName()
+                        + " IN " + concert.getVenue().getName()
                         + " | Price: $" + concert.getTicket_price()
                         + " | Tickets sold: " + concert.getTicket_sold());
             }
@@ -149,7 +149,7 @@ public class ConcertService {
             for (Concert concert : concerts) {
                 System.out.println(concert.getConcert_year()
                         + " | " + concert.getArtist().getName()
-                        + " @ " + concert.getVenue().getName()
+                        + " IN " + concert.getVenue().getName()
                         + " | Price: $" + concert.getTicket_price()
                         + " | Tickets sold: " + concert.getTicket_sold());
             }
@@ -165,7 +165,7 @@ public class ConcertService {
         for (Concert concert : concerts) {
             System.out.println(concert.getConcert_year()
                     + " | " + concert.getArtist().getName()
-                    + " @ " + concert.getVenue().getName()
+                    + " IN " + concert.getVenue().getName()
                     + " | Price: $" + concert.getTicket_price()
                     + " | Tickets sold: " + concert.getTicket_sold());
         }
@@ -180,7 +180,7 @@ public class ConcertService {
         for (Concert concert : concerts) {
             System.out.println(concert.getConcert_year()
                     + " | " + concert.getArtist().getName()
-                    + " @ " + concert.getVenue().getName()
+                    + " IN " + concert.getVenue().getName()
                     + " | Price: $" + concert.getTicket_price()
                     + " | Tickets sold: " + concert.getTicket_sold());
         }
@@ -195,7 +195,7 @@ public class ConcertService {
         for (Concert concert : concerts) {
             System.out.println(concert.getConcert_year()
                     + " | " + concert.getArtist().getName()
-                    + " @ " + concert.getVenue().getName()
+                    + " IN " + concert.getVenue().getName()
                     + " | Price: $" + concert.getTicket_price()
                     + " | Tickets sold: " + concert.getTicket_sold());
         }
@@ -210,7 +210,7 @@ public class ConcertService {
         for (Concert concert : concerts) {
             System.out.println(concert.getConcert_year()
                     + " | " + concert.getArtist().getName()
-                    + " @ " + concert.getVenue().getName()
+                    + " IN " + concert.getVenue().getName()
                     + " | Price: $" + concert.getTicket_price()
                     + " | Tickets sold: " + concert.getTicket_sold());
         }
