@@ -369,7 +369,7 @@ public class StartUpRunner implements CommandLineRunner {
                 case "2" -> concertService.busiestVenueAndArtist();
                 case "3" -> concertService.averagePriceByYear();
                 case "4" -> concertService.capacityReport();
-                case "8" -> running = false;
+                case "0" -> running = false;
                 default -> System.out.println("Unknown option.");
             }
         }

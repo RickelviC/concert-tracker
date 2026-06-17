@@ -2,7 +2,6 @@ package com.pluralsight.concerttracker.service;
 
 import com.pluralsight.concerttracker.data.ArtistRepository;
 import com.pluralsight.concerttracker.data.ConcertRepository;
-import com.pluralsight.concerttracker.data.PromoterRepository;
 import com.pluralsight.concerttracker.data.VenueRepository;
 import com.pluralsight.concerttracker.models.Artist;
 import com.pluralsight.concerttracker.models.Concert;
@@ -304,5 +303,4 @@ public class ConcertService {
                     soldOutFlag);
         }
     }
-
 }

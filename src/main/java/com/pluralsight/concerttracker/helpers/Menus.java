@@ -14,7 +14,6 @@ public class Menus {
         System.out.println("6) Reports");
         System.out.println("0) Quit");
         System.out.print("Choose: ");
-
     }
 
     public void printConcerts() {
