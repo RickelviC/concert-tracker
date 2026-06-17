@@ -1,13 +1,8 @@
 package com.pluralsight.concerttracker.seeder;
 
-import com.pluralsight.concerttracker.data.ArtistRepository;
-import com.pluralsight.concerttracker.data.ConcertRepository;
-import com.pluralsight.concerttracker.data.PromoterRepository;
-import com.pluralsight.concerttracker.data.VenueRepository;
-import com.pluralsight.concerttracker.models.Artist;
-import com.pluralsight.concerttracker.models.Concert;
-import com.pluralsight.concerttracker.models.Promoter;
-import com.pluralsight.concerttracker.models.Venue;
+import com.pluralsight.concerttracker.data.*;
+import com.pluralsight.concerttracker.models.*;
+
 import org.springframework.stereotype.Service;
 
 @Service

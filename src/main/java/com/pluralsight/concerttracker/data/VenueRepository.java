@@ -3,6 +3,12 @@ package com.pluralsight.concerttracker.data;
 import com.pluralsight.concerttracker.models.Venue;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface VenueRepository extends JpaRepository<Venue, Long> {
+import java.util.List;
 
+public interface VenueRepository extends JpaRepository<Venue, Long> {
+    List<Venue> findByCityContainingIgnoreCase(String city);
+
+    List<Venue> findByNameContainingIgnoreCase(String name);
+
+    List<Venue> findByCapacityGreaterThanEqual(Long capacity);
 }
