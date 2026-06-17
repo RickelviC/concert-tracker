@@ -10,14 +10,15 @@ import com.pluralsight.concerttracker.models.Promoter;
 import com.pluralsight.concerttracker.models.Venue;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ConcertService {
     private final ConcertRepository concertRepository;
     private final ArtistRepository artistRepository;
     private final VenueRepository venueRepository;
-
 
 
     public ConcertService(ConcertRepository concertRepository, ArtistRepository artistRepository, VenueRepository venueRepository) {
@@ -215,4 +216,93 @@ public class ConcertService {
                     + " | Tickets sold: " + concert.getTicket_sold());
         }
     }
+
+    public void revenuePerVenue() {
+        List<Concert> concerts = concertRepository.findAll();
+
+        Map<String, Double> revenueByVenue = new HashMap<>();
+
+        for (Concert concert : concerts) {
+            String venueName = concert.getVenue().getName();
+            double revenue = concert.getTicket_price() * concert.getTicket_sold();
+            revenueByVenue.put(venueName, revenueByVenue.getOrDefault(venueName, 0.0) + revenue);
+        }
+
+        System.out.println("\n=== Revenue Per Venue ===");
+        for (String venueName : revenueByVenue.keySet()) {
+            System.out.printf("%s: $%.2f%n", venueName, revenueByVenue.get(venueName));
+        }
+    }
+
+    public void busiestVenueAndArtist() {
+        List<Concert> concerts = concertRepository.findAll();
+
+        Map<String, Integer> venueCounts = new HashMap<>();
+        Map<String, Integer> artistCounts = new HashMap<>();
+
+        for (Concert concert : concerts) {
+            String venueName = concert.getVenue().getName();
+            String artistName = concert.getArtist().getName();
+            venueCounts.put(venueName, venueCounts.getOrDefault(venueName, 0) + 1);
+            artistCounts.put(artistName, artistCounts.getOrDefault(artistName, 0) + 1);
+        }
+
+        String busiestVenue = "";
+        int maxVenueCount = 0;
+        for (String venueName : venueCounts.keySet()) {
+            if (venueCounts.get(venueName) > maxVenueCount) {
+                maxVenueCount = venueCounts.get(venueName);
+                busiestVenue = venueName;
+            }
+        }
+
+        String busiestArtist = "";
+        int maxArtistCount = 0;
+        for (String artistName : artistCounts.keySet()) {
+            if (artistCounts.get(artistName) > maxArtistCount) {
+                maxArtistCount = artistCounts.get(artistName);
+                busiestArtist = artistName;
+            }
+        }
+
+        System.out.println("\n=== Busiest Venue & Artist ===");
+        System.out.println("Busiest venue: " + busiestVenue + " (" + maxVenueCount + " concerts)");
+        System.out.println("Busiest artist: " + busiestArtist + " (" + maxArtistCount + " concerts)");
+    }
+
+    public void averagePriceByYear() {
+        List<Concert> concerts = concertRepository.findAll();
+
+
+        Map<Integer, Double> totalPriceByYear = new HashMap<>();
+        Map<Integer, Integer> countByYear = new HashMap<>();
+
+        for (Concert concert : concerts) {
+            int year = concert.getConcert_year();
+            totalPriceByYear.put(year, totalPriceByYear.getOrDefault(year, 0.0) + concert.getTicket_price());
+            countByYear.put(year, countByYear.getOrDefault(year, 0) + 1);
+        }
+
+        System.out.println("\n=== Average Ticket Price By Year ===");
+        for (Integer year : totalPriceByYear.keySet()) {
+            double average = totalPriceByYear.get(year) / countByYear.get(year);
+            System.out.printf("%d: $%.2f%n", year, average);
+        }
+    }
+
+    public void capacityReport() {
+        List<Concert> concerts = concertRepository.findAll();
+
+        System.out.println("\n=== Capacity Report ===");
+        for (Concert concert : concerts) {
+            double percentFull = (concert.getTicket_sold() / (double) concert.getVenue().getCapacity()) * 100;
+            String soldOutFlag = percentFull >= 100 ? " (SOLD OUT)" : "";
+            System.out.printf("%s IN %s: %.1f%% full%s%n",
+                    concert.getArtist().getName(),
+                    concert.getVenue().getName(),
+                    percentFull,
+                    soldOutFlag);
+        }
+    }
+
 }

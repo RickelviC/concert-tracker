@@ -21,7 +21,11 @@ public class StartUpRunner implements CommandLineRunner {
     private final Menus menus;
 
 
-    public StartUpRunner(ArtistService artistService, ConcertService concertService, PromoterService promoterService, VenueService venueService, DataSeed dataSeed, Menus menus) {
+    public StartUpRunner(ArtistService artistService,
+                         ConcertService concertService,
+                         PromoterService promoterService,
+                         VenueService venueService,
+                         DataSeed dataSeed, Menus menus) {
         this.artistService = artistService;
         this.concertService = concertService;
         this.promoterService = promoterService;
@@ -43,6 +47,7 @@ public class StartUpRunner implements CommandLineRunner {
                     case 3 -> artistsScreen();
                     case 4 -> venuesScreen();
                     case 5 -> promoterScreen();
+                    case 6 -> reportScreen();
                     case 0 -> running = false;
                     default -> System.out.println("Unknown option.");
                 }
@@ -353,5 +358,20 @@ public class StartUpRunner implements CommandLineRunner {
         System.out.print("Enter earliest year: ");
         int minYear = Integer.parseInt(scanner.nextLine().trim());
         concertService.findByMaxPriceAndEarliestYear(maxPrice, minYear);
+    }
+
+    public void reportScreen() {
+        boolean running = true;
+        while (running) {
+            menus.reportScreen();
+            switch (scanner.nextLine().trim()) {
+                case "1" -> concertService.revenuePerVenue();
+                case "2" -> concertService.busiestVenueAndArtist();
+                case "3" -> concertService.averagePriceByYear();
+                case "4" -> concertService.capacityReport();
+                case "8" -> running = false;
+                default -> System.out.println("Unknown option.");
+            }
+        }
     }
 }
